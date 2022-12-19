@@ -18,7 +18,7 @@ import PersonalizedDocumentsErrorAllOf from './PersonalizedDocumentsErrorAllOf';
 /**
  * The PersonalizedDocumentsError model module.
  * @module model/PersonalizedDocumentsError
- * @version v1.0.11
+ * @version 1.0.12
  */
 class PersonalizedDocumentsError {
     /**

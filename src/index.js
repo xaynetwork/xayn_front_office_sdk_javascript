@@ -55,7 +55,7 @@ import FrontOfficeApi from './com.xayn.frontoffice/FrontOfficeApi';
 * </pre>
 * </p>
 * @module index
-* @version v1.0.11
+* @version 1.0.12
 */
 export {
     /**

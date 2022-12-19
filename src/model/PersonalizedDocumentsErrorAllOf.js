@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The PersonalizedDocumentsErrorAllOf model module.
  * @module model/PersonalizedDocumentsErrorAllOf
- * @version v1.0.11
+ * @version 1.0.12
  */
 class PersonalizedDocumentsErrorAllOf {
     /**
