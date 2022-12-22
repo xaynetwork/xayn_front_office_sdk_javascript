@@ -18,7 +18,7 @@ import UserInteractionErrorAllOf from './UserInteractionErrorAllOf';
 /**
  * The UserInteractionError model module.
  * @module model/UserInteractionError
- * @version 1.0.13
+ * @version 1.0.14
  */
 class UserInteractionError {
     /**

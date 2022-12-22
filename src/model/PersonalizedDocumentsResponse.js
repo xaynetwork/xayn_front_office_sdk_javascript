@@ -17,7 +17,7 @@ import PersonalizedDocumentData from './PersonalizedDocumentData';
 /**
  * The PersonalizedDocumentsResponse model module.
  * @module model/PersonalizedDocumentsResponse
- * @version 1.0.13
+ * @version 1.0.14
  */
 class PersonalizedDocumentsResponse {
     /**

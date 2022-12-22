@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The UserInteractionErrorAllOf model module.
  * @module model/UserInteractionErrorAllOf
- * @version 1.0.13
+ * @version 1.0.14
  */
 class UserInteractionErrorAllOf {
     /**
