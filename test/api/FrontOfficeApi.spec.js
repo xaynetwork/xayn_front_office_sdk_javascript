@@ -38,25 +38,27 @@
   });
 
   describe("FrontOfficeApi", function () {
-    describe("documentInteraction", function () {
-      it("should call documentInteraction successfully", function (done) {
+    describe("updateUserInteractions", function () {
+      it("should call updateUserInteractions successfully", function (done) {
         api
-          .documentInteraction("xayn_test_user", {
-            userInteractionRequest: {
-              documents: [
-                {
-                  id: "test_A",
-                  type: "positive",
-                },
-                {
-                  id: "test_B",
-                  type: "positive",
-                },
-              ],
-            },
+          .updateUserInteractions("xayn_test_user", {
+            documents: [
+              {
+                id: "test_A",
+                type: "Positive",
+              },
+              {
+                id: "test_B",
+                type: "Positive",
+              },
+            ],
           })
           .then((result) => {
             expect(result).to.be(null);
+            done();
+          })
+          .catch((error) => {
+            console.log(error);
             done();
           });
       });
@@ -64,7 +66,7 @@
     describe("getPersonalizedDocuments", function () {
       it("should call getPersonalizedDocuments successfully", function (done) {
         api
-          .getPersonalizedDocuments("xayn_test_user", {
+          .getPersonalizedDocuments("xayn_test_user_no_results", {
             count: 10,
           })
           .then((result) => {
@@ -75,7 +77,7 @@
             expect(error.body.kind).to.be("NotEnoughInteractions");
             done();
           });
-      });
+      }).timeout(6000);
     });
   });
 });
