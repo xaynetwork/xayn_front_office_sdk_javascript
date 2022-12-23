@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The PersonalizedDocumentData model module.
  * @module model/PersonalizedDocumentData
- * @version 1.0.18
+ * @version 1.0.19
  */
 class PersonalizedDocumentData {
     /**
