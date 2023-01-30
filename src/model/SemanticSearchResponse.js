@@ -15,19 +15,19 @@ import ApiClient from '../ApiClient';
 import PersonalizedDocumentData from './PersonalizedDocumentData';
 
 /**
- * The PersonalizedDocumentsResponse model module.
- * @module model/PersonalizedDocumentsResponse
+ * The SemanticSearchResponse model module.
+ * @module model/SemanticSearchResponse
  * @version 1.0.20
  */
-class PersonalizedDocumentsResponse {
+class SemanticSearchResponse {
     /**
-     * Constructs a new <code>PersonalizedDocumentsResponse</code>.
-     * @alias module:model/PersonalizedDocumentsResponse
+     * Constructs a new <code>SemanticSearchResponse</code>.
+     * @alias module:model/SemanticSearchResponse
      * @param documents {Array.<module:model/PersonalizedDocumentData>} 
      */
     constructor(documents) { 
         
-        PersonalizedDocumentsResponse.initialize(this, documents);
+        SemanticSearchResponse.initialize(this, documents);
     }
 
     /**
@@ -40,15 +40,15 @@ class PersonalizedDocumentsResponse {
     }
 
     /**
-     * Constructs a <code>PersonalizedDocumentsResponse</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>SemanticSearchResponse</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/PersonalizedDocumentsResponse} obj Optional instance to populate.
-     * @return {module:model/PersonalizedDocumentsResponse} The populated <code>PersonalizedDocumentsResponse</code> instance.
+     * @param {module:model/SemanticSearchResponse} obj Optional instance to populate.
+     * @return {module:model/SemanticSearchResponse} The populated <code>SemanticSearchResponse</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new PersonalizedDocumentsResponse();
+            obj = obj || new SemanticSearchResponse();
 
             if (data.hasOwnProperty('documents')) {
                 obj['documents'] = ApiClient.convertToType(data['documents'], [PersonalizedDocumentData]);
@@ -58,13 +58,13 @@ class PersonalizedDocumentsResponse {
     }
 
     /**
-     * Validates the JSON data with respect to <code>PersonalizedDocumentsResponse</code>.
+     * Validates the JSON data with respect to <code>SemanticSearchResponse</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>PersonalizedDocumentsResponse</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SemanticSearchResponse</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of PersonalizedDocumentsResponse.RequiredProperties) {
+        for (const property of SemanticSearchResponse.RequiredProperties) {
             if (!data[property]) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
@@ -86,17 +86,17 @@ class PersonalizedDocumentsResponse {
 
 }
 
-PersonalizedDocumentsResponse.RequiredProperties = ["documents"];
+SemanticSearchResponse.RequiredProperties = ["documents"];
 
 /**
  * @member {Array.<module:model/PersonalizedDocumentData>} documents
  */
-PersonalizedDocumentsResponse.prototype['documents'] = undefined;
+SemanticSearchResponse.prototype['documents'] = undefined;
 
 
 
 
 
 
-export default PersonalizedDocumentsResponse;
+export default SemanticSearchResponse;
 
