@@ -17,7 +17,7 @@ import PersonalizedDocumentData from './PersonalizedDocumentData';
 /**
  * The SemanticSearchResponse model module.
  * @module model/SemanticSearchResponse
- * @version 1.0.20
+ * @version 1.20.1
  */
 class SemanticSearchResponse {
     /**
