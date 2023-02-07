@@ -17,7 +17,7 @@ import DocumentProperties from './DocumentProperties';
 /**
  * The PersonalizedDocumentData model module.
  * @module model/PersonalizedDocumentData
- * @version 1.0.21
+ * @version 1.0.22
  */
 class PersonalizedDocumentData {
     /**
