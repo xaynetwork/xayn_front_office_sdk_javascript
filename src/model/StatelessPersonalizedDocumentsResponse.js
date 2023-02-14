@@ -15,19 +15,19 @@ import ApiClient from '../ApiClient';
 import PersonalizedDocumentData from './PersonalizedDocumentData';
 
 /**
- * The SemanticSearchResponse model module.
- * @module model/SemanticSearchResponse
+ * The StatelessPersonalizedDocumentsResponse model module.
+ * @module model/StatelessPersonalizedDocumentsResponse
  * @version 1.0.23
  */
-class SemanticSearchResponse {
+class StatelessPersonalizedDocumentsResponse {
     /**
-     * Constructs a new <code>SemanticSearchResponse</code>.
-     * @alias module:model/SemanticSearchResponse
+     * Constructs a new <code>StatelessPersonalizedDocumentsResponse</code>.
+     * @alias module:model/StatelessPersonalizedDocumentsResponse
      * @param documents {Array.<module:model/PersonalizedDocumentData>} 
      */
     constructor(documents) { 
         
-        SemanticSearchResponse.initialize(this, documents);
+        StatelessPersonalizedDocumentsResponse.initialize(this, documents);
     }
 
     /**
@@ -40,16 +40,19 @@ class SemanticSearchResponse {
     }
 
     /**
-     * Constructs a <code>SemanticSearchResponse</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>StatelessPersonalizedDocumentsResponse</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/SemanticSearchResponse} obj Optional instance to populate.
-     * @return {module:model/SemanticSearchResponse} The populated <code>SemanticSearchResponse</code> instance.
+     * @param {module:model/StatelessPersonalizedDocumentsResponse} obj Optional instance to populate.
+     * @return {module:model/StatelessPersonalizedDocumentsResponse} The populated <code>StatelessPersonalizedDocumentsResponse</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new SemanticSearchResponse();
+            obj = obj || new StatelessPersonalizedDocumentsResponse();
 
+            if (data.hasOwnProperty('warnings')) {
+                obj['warnings'] = ApiClient.convertToType(data['warnings'], ['String']);
+            }
             if (data.hasOwnProperty('documents')) {
                 obj['documents'] = ApiClient.convertToType(data['documents'], [PersonalizedDocumentData]);
             }
@@ -58,16 +61,20 @@ class SemanticSearchResponse {
     }
 
     /**
-     * Validates the JSON data with respect to <code>SemanticSearchResponse</code>.
+     * Validates the JSON data with respect to <code>StatelessPersonalizedDocumentsResponse</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SemanticSearchResponse</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>StatelessPersonalizedDocumentsResponse</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of SemanticSearchResponse.RequiredProperties) {
+        for (const property of StatelessPersonalizedDocumentsResponse.RequiredProperties) {
             if (!data[property]) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
+        }
+        // ensure the json data is an array
+        if (!Array.isArray(data['warnings'])) {
+            throw new Error("Expected the field `warnings` to be an array in the JSON data but got " + data['warnings']);
         }
         if (data['documents']) { // data not null
             // ensure the json data is an array
@@ -86,17 +93,22 @@ class SemanticSearchResponse {
 
 }
 
-SemanticSearchResponse.RequiredProperties = ["documents"];
+StatelessPersonalizedDocumentsResponse.RequiredProperties = ["documents"];
+
+/**
+ * @member {Array.<String>} warnings
+ */
+StatelessPersonalizedDocumentsResponse.prototype['warnings'] = undefined;
 
 /**
  * @member {Array.<module:model/PersonalizedDocumentData>} documents
  */
-SemanticSearchResponse.prototype['documents'] = undefined;
+StatelessPersonalizedDocumentsResponse.prototype['documents'] = undefined;
 
 
 
 
 
 
-export default SemanticSearchResponse;
+export default StatelessPersonalizedDocumentsResponse;
 

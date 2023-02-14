@@ -12,21 +12,21 @@
  */
 
 import ApiClient from '../ApiClient';
-import UserInteractionType from './UserInteractionType';
 
 /**
- * The UserInteractionData model module.
- * @module model/UserInteractionData
+ * The HistoryEntry model module.
+ * @module model/HistoryEntry
  * @version 1.0.23
  */
-class UserInteractionData {
+class HistoryEntry {
     /**
-     * Constructs a new <code>UserInteractionData</code>.
-     * @alias module:model/UserInteractionData
+     * Constructs a new <code>HistoryEntry</code>.
+     * @alias module:model/HistoryEntry
+     * @param id {String} An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
      */
-    constructor() { 
+    constructor(id) { 
         
-        UserInteractionData.initialize(this);
+        HistoryEntry.initialize(this, id);
     }
 
     /**
@@ -34,36 +34,43 @@ class UserInteractionData {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, id) { 
+        obj['id'] = id;
     }
 
     /**
-     * Constructs a <code>UserInteractionData</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>HistoryEntry</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/UserInteractionData} obj Optional instance to populate.
-     * @return {module:model/UserInteractionData} The populated <code>UserInteractionData</code> instance.
+     * @param {module:model/HistoryEntry} obj Optional instance to populate.
+     * @return {module:model/HistoryEntry} The populated <code>HistoryEntry</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new UserInteractionData();
+            obj = obj || new HistoryEntry();
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = UserInteractionType.constructFromObject(data['type']);
+            if (data.hasOwnProperty('timestamp')) {
+                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
             }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>UserInteractionData</code>.
+     * Validates the JSON data with respect to <code>HistoryEntry</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>UserInteractionData</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>HistoryEntry</code>.
      */
     static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of HistoryEntry.RequiredProperties) {
+            if (!data[property]) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
         // ensure the json data is a string
         if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
@@ -75,23 +82,24 @@ class UserInteractionData {
 
 }
 
-
+HistoryEntry.RequiredProperties = ["id"];
 
 /**
  * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
  * @member {String} id
  */
-UserInteractionData.prototype['id'] = undefined;
+HistoryEntry.prototype['id'] = undefined;
 
 /**
- * @member {module:model/UserInteractionType} type
+ * A RFC3339 compatible date-time  - can be in the future - will be converted to and then stored as UTC - sub-second resolution is not guaranteed. 
+ * @member {Date} timestamp
  */
-UserInteractionData.prototype['type'] = undefined;
+HistoryEntry.prototype['timestamp'] = undefined;
 
 
 
 
 
 
-export default UserInteractionData;
+export default HistoryEntry;
 
