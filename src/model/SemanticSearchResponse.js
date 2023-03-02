@@ -17,7 +17,7 @@ import PersonalizedDocumentData from './PersonalizedDocumentData';
 /**
  * The SemanticSearchResponse model module.
  * @module model/SemanticSearchResponse
- * @version 1.0.24
+ * @version 1.0.25
  */
 class SemanticSearchResponse {
     /**
@@ -76,7 +76,7 @@ class SemanticSearchResponse {
             }
             // validate the optional field `documents` (array)
             for (const item of data['documents']) {
-                PersonalizedDocumentData.validateJsonObject(item);
+                PersonalizedDocumentData.validateJSON(item);
             };
         }
 

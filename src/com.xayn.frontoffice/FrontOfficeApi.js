@@ -16,6 +16,7 @@ import ApiClient from "../ApiClient";
 import GenericError from '../model/GenericError';
 import PersonalizedDocumentsError from '../model/PersonalizedDocumentsError';
 import PersonalizedDocumentsResponse from '../model/PersonalizedDocumentsResponse';
+import SemanticSearchRequest from '../model/SemanticSearchRequest';
 import SemanticSearchResponse from '../model/SemanticSearchResponse';
 import StatelessPersonalizedDocumentsRequest from '../model/StatelessPersonalizedDocumentsRequest';
 import StatelessPersonalizedDocumentsResponse from '../model/StatelessPersonalizedDocumentsResponse';
@@ -25,7 +26,7 @@ import UserInteractionRequest from '../model/UserInteractionRequest';
 /**
 * FrontOffice service.
 * @module com.xayn.frontoffice/FrontOfficeApi
-* @version 1.0.24
+* @version 1.0.25
 */
 export default class FrontOfficeApi {
 
@@ -102,28 +103,19 @@ export default class FrontOfficeApi {
     /**
      * Returns documents similar to the given document.
      * Returns a list of documents that are semantically similar to the one given as input. Each document contains the id, the score and the properties. The score is a value between 0 and 1 where a higher value means that the document is more similar to the one in input
-     * @param {String} documentId Id of the document
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.count Maximum number of semantic similar documents to return (default to 10)
-     * @param {Number} opts.minSimilarity Minimum similarity a document has to have to be included. (default to 0)
-     * @param {String} opts.personalizeFor A user for whom the documents will be personalized for. If that user doesn't have enough interactions in the system, then the documents are returned unpersonalized.
+     * @param {module:model/SemanticSearchRequest} semanticSearchRequest 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SemanticSearchResponse} and HTTP response
      */
-    getSimilarDocumentsWithHttpInfo(documentId, opts) {
-      opts = opts || {};
-      let postBody = null;
-      // verify the required parameter 'documentId' is set
-      if (documentId === undefined || documentId === null) {
-        throw new Error("Missing the required parameter 'documentId' when calling getSimilarDocuments");
+    getSimilarDocumentsWithHttpInfo(semanticSearchRequest) {
+      let postBody = semanticSearchRequest;
+      // verify the required parameter 'semanticSearchRequest' is set
+      if (semanticSearchRequest === undefined || semanticSearchRequest === null) {
+        throw new Error("Missing the required parameter 'semanticSearchRequest' when calling getSimilarDocuments");
       }
 
       let pathParams = {
-        'document_id': documentId
       };
       let queryParams = {
-        'count': opts['count'],
-        'min_similarity': opts['minSimilarity'],
-        'personalize_for': opts['personalizeFor']
       };
       let headerParams = {
       };
@@ -131,11 +123,11 @@ export default class FrontOfficeApi {
       };
 
       let authNames = ['ApiKeyAuth'];
-      let contentTypes = [];
+      let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = SemanticSearchResponse;
       return this.apiClient.callApi(
-        '/semantic_search/{document_id}', 'GET',
+        '/semantic_search', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null
       );
@@ -144,15 +136,11 @@ export default class FrontOfficeApi {
     /**
      * Returns documents similar to the given document.
      * Returns a list of documents that are semantically similar to the one given as input. Each document contains the id, the score and the properties. The score is a value between 0 and 1 where a higher value means that the document is more similar to the one in input
-     * @param {String} documentId Id of the document
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.count Maximum number of semantic similar documents to return (default to 10)
-     * @param {Number} opts.minSimilarity Minimum similarity a document has to have to be included. (default to 0)
-     * @param {String} opts.personalizeFor A user for whom the documents will be personalized for. If that user doesn't have enough interactions in the system, then the documents are returned unpersonalized.
+     * @param {module:model/SemanticSearchRequest} semanticSearchRequest 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SemanticSearchResponse}
      */
-    getSimilarDocuments(documentId, opts) {
-      return this.getSimilarDocumentsWithHttpInfo(documentId, opts)
+    getSimilarDocuments(semanticSearchRequest) {
+      return this.getSimilarDocumentsWithHttpInfo(semanticSearchRequest)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

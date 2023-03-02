@@ -16,10 +16,15 @@ import ApiClient from './ApiClient';
 import DocumentProperties from './model/DocumentProperties';
 import GenericError from './model/GenericError';
 import HistoryEntry from './model/HistoryEntry';
+import InputUser from './model/InputUser';
+import InputUserById from './model/InputUserById';
+import InputUserWithHistory from './model/InputUserWithHistory';
 import PersonalizedDocumentData from './model/PersonalizedDocumentData';
 import PersonalizedDocumentsError from './model/PersonalizedDocumentsError';
 import PersonalizedDocumentsErrorAllOf from './model/PersonalizedDocumentsErrorAllOf';
 import PersonalizedDocumentsResponse from './model/PersonalizedDocumentsResponse';
+import SemanticSearchRequest from './model/SemanticSearchRequest';
+import SemanticSearchRequestPersonalize from './model/SemanticSearchRequestPersonalize';
 import SemanticSearchResponse from './model/SemanticSearchResponse';
 import StatelessPersonalizedDocumentsRequest from './model/StatelessPersonalizedDocumentsRequest';
 import StatelessPersonalizedDocumentsResponse from './model/StatelessPersonalizedDocumentsResponse';
@@ -60,7 +65,7 @@ import FrontOfficeApi from './com.xayn.frontoffice/FrontOfficeApi';
 * </pre>
 * </p>
 * @module index
-* @version 1.0.24
+* @version 1.0.25
 */
 export {
     /**
@@ -88,6 +93,24 @@ export {
     HistoryEntry,
 
     /**
+     * The InputUser model constructor.
+     * @property {module:model/InputUser}
+     */
+    InputUser,
+
+    /**
+     * The InputUserById model constructor.
+     * @property {module:model/InputUserById}
+     */
+    InputUserById,
+
+    /**
+     * The InputUserWithHistory model constructor.
+     * @property {module:model/InputUserWithHistory}
+     */
+    InputUserWithHistory,
+
+    /**
      * The PersonalizedDocumentData model constructor.
      * @property {module:model/PersonalizedDocumentData}
      */
@@ -110,6 +133,18 @@ export {
      * @property {module:model/PersonalizedDocumentsResponse}
      */
     PersonalizedDocumentsResponse,
+
+    /**
+     * The SemanticSearchRequest model constructor.
+     * @property {module:model/SemanticSearchRequest}
+     */
+    SemanticSearchRequest,
+
+    /**
+     * The SemanticSearchRequestPersonalize model constructor.
+     * @property {module:model/SemanticSearchRequestPersonalize}
+     */
+    SemanticSearchRequestPersonalize,
 
     /**
      * The SemanticSearchResponse model constructor.

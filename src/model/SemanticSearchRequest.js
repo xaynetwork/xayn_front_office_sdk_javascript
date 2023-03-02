@@ -12,22 +12,22 @@
  */
 
 import ApiClient from '../ApiClient';
-import HistoryEntry from './HistoryEntry';
+import SemanticSearchRequestPersonalize from './SemanticSearchRequestPersonalize';
 
 /**
- * The StatelessPersonalizedDocumentsRequest model module.
- * @module model/StatelessPersonalizedDocumentsRequest
+ * The SemanticSearchRequest model module.
+ * @module model/SemanticSearchRequest
  * @version 1.0.25
  */
-class StatelessPersonalizedDocumentsRequest {
+class SemanticSearchRequest {
     /**
-     * Constructs a new <code>StatelessPersonalizedDocumentsRequest</code>.
-     * @alias module:model/StatelessPersonalizedDocumentsRequest
-     * @param history {Array.<module:model/HistoryEntry>} The history is an sequence of entries representing documents visited by the user.  It is ordered from the  \"oldest\" interaction at index 0 to the \"newest\" interaction at the highest index.  History entries do not need to have a timestamp, if no timestamp is given it is approximated in some way based on timestamps of neighboring documents and if non have a timestamp they are all assumed to have happened \"just now\" for simplicity.
+     * Constructs a new <code>SemanticSearchRequest</code>.
+     * @alias module:model/SemanticSearchRequest
+     * @param documentId {String} An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
      */
-    constructor(history) { 
+    constructor(documentId) { 
         
-        StatelessPersonalizedDocumentsRequest.initialize(this, history);
+        SemanticSearchRequest.initialize(this, documentId);
     }
 
     /**
@@ -35,23 +35,23 @@ class StatelessPersonalizedDocumentsRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, history) { 
-        obj['history'] = history;
+    static initialize(obj, documentId) { 
+        obj['document_id'] = documentId;
     }
 
     /**
-     * Constructs a <code>StatelessPersonalizedDocumentsRequest</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>SemanticSearchRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/StatelessPersonalizedDocumentsRequest} obj Optional instance to populate.
-     * @return {module:model/StatelessPersonalizedDocumentsRequest} The populated <code>StatelessPersonalizedDocumentsRequest</code> instance.
+     * @param {module:model/SemanticSearchRequest} obj Optional instance to populate.
+     * @return {module:model/SemanticSearchRequest} The populated <code>SemanticSearchRequest</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new StatelessPersonalizedDocumentsRequest();
+            obj = obj || new SemanticSearchRequest();
 
-            if (data.hasOwnProperty('history')) {
-                obj['history'] = ApiClient.convertToType(data['history'], [HistoryEntry]);
+            if (data.hasOwnProperty('document_id')) {
+                obj['document_id'] = ApiClient.convertToType(data['document_id'], 'String');
             }
             if (data.hasOwnProperty('count')) {
                 obj['count'] = ApiClient.convertToType(data['count'], 'Number');
@@ -59,31 +59,35 @@ class StatelessPersonalizedDocumentsRequest {
             if (data.hasOwnProperty('published_after')) {
                 obj['published_after'] = ApiClient.convertToType(data['published_after'], 'Date');
             }
+            if (data.hasOwnProperty('min_similarity')) {
+                obj['min_similarity'] = ApiClient.convertToType(data['min_similarity'], 'Number');
+            }
+            if (data.hasOwnProperty('personalize')) {
+                obj['personalize'] = SemanticSearchRequestPersonalize.constructFromObject(data['personalize']);
+            }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>StatelessPersonalizedDocumentsRequest</code>.
+     * Validates the JSON data with respect to <code>SemanticSearchRequest</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>StatelessPersonalizedDocumentsRequest</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SemanticSearchRequest</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of StatelessPersonalizedDocumentsRequest.RequiredProperties) {
+        for (const property of SemanticSearchRequest.RequiredProperties) {
             if (!data[property]) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        if (data['history']) { // data not null
-            // ensure the json data is an array
-            if (!Array.isArray(data['history'])) {
-                throw new Error("Expected the field `history` to be an array in the JSON data but got " + data['history']);
-            }
-            // validate the optional field `history` (array)
-            for (const item of data['history']) {
-                HistoryEntry.validateJSON(item);
-            };
+        // ensure the json data is a string
+        if (data['document_id'] && !(typeof data['document_id'] === 'string' || data['document_id'] instanceof String)) {
+            throw new Error("Expected the field `document_id` to be a primitive type in the JSON string but got " + data['document_id']);
+        }
+        // validate the optional field `personalize`
+        if (data['personalize']) { // data not null
+          SemanticSearchRequestPersonalize.validateJSON(data['personalize']);
         }
 
         return true;
@@ -92,30 +96,42 @@ class StatelessPersonalizedDocumentsRequest {
 
 }
 
-StatelessPersonalizedDocumentsRequest.RequiredProperties = ["history"];
+SemanticSearchRequest.RequiredProperties = ["document_id"];
 
 /**
- * The history is an sequence of entries representing documents visited by the user.  It is ordered from the  \"oldest\" interaction at index 0 to the \"newest\" interaction at the highest index.  History entries do not need to have a timestamp, if no timestamp is given it is approximated in some way based on timestamps of neighboring documents and if non have a timestamp they are all assumed to have happened \"just now\" for simplicity.
- * @member {Array.<module:model/HistoryEntry>} history
+ * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
+ * @member {String} document_id
  */
-StatelessPersonalizedDocumentsRequest.prototype['history'] = undefined;
+SemanticSearchRequest.prototype['document_id'] = undefined;
 
 /**
  * @member {Number} count
  * @default 10
  */
-StatelessPersonalizedDocumentsRequest.prototype['count'] = 10;
+SemanticSearchRequest.prototype['count'] = 10;
 
 /**
  * A RFC3339 compatible date-time  - can be in the future - will be converted to and then stored as UTC - sub-second resolution is not guaranteed. - while `properties.publication_date` is in the future the document will not be   returned for personalized documents, once it is no longer in the future it will   automatically be considered for personalization from then on 
  * @member {Date} published_after
  */
-StatelessPersonalizedDocumentsRequest.prototype['published_after'] = undefined;
+SemanticSearchRequest.prototype['published_after'] = undefined;
+
+/**
+ * Minimal similarity of a document to consider it as search candidate.
+ * @member {Number} min_similarity
+ * @default 0
+ */
+SemanticSearchRequest.prototype['min_similarity'] = 0;
+
+/**
+ * @member {module:model/SemanticSearchRequestPersonalize} personalize
+ */
+SemanticSearchRequest.prototype['personalize'] = undefined;
 
 
 
 
 
 
-export default StatelessPersonalizedDocumentsRequest;
+export default SemanticSearchRequest;
 

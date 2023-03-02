@@ -17,7 +17,7 @@ import UserInteractionType from './UserInteractionType';
 /**
  * The UserInteractionData model module.
  * @module model/UserInteractionData
- * @version 1.0.24
+ * @version 1.0.25
  */
 class UserInteractionData {
     /**

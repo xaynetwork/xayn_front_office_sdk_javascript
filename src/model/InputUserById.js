@@ -14,18 +14,18 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The GenericError model module.
- * @module model/GenericError
+ * The InputUserById model module.
+ * @module model/InputUserById
  * @version 1.0.25
  */
-class GenericError {
+class InputUserById {
     /**
-     * Constructs a new <code>GenericError</code>.
-     * @alias module:model/GenericError
+     * Constructs a new <code>InputUserById</code>.
+     * @alias module:model/InputUserById
      */
     constructor() { 
         
-        GenericError.initialize(this);
+        InputUserById.initialize(this);
     }
 
     /**
@@ -37,42 +37,32 @@ class GenericError {
     }
 
     /**
-     * Constructs a <code>GenericError</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>InputUserById</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/GenericError} obj Optional instance to populate.
-     * @return {module:model/GenericError} The populated <code>GenericError</code> instance.
+     * @param {module:model/InputUserById} obj Optional instance to populate.
+     * @return {module:model/InputUserById} The populated <code>InputUserById</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new GenericError();
+            obj = obj || new InputUserById();
 
-            if (data.hasOwnProperty('request_id')) {
-                obj['request_id'] = ApiClient.convertToType(data['request_id'], 'String');
-            }
-            if (data.hasOwnProperty('kind')) {
-                obj['kind'] = ApiClient.convertToType(data['kind'], 'String');
-            }
-            if (data.hasOwnProperty('details')) {
-                obj['details'] = ApiClient.convertToType(data['details'], Object);
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>GenericError</code>.
+     * Validates the JSON data with respect to <code>InputUserById</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>GenericError</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>InputUserById</code>.
      */
     static validateJSON(data) {
         // ensure the json data is a string
-        if (data['request_id'] && !(typeof data['request_id'] === 'string' || data['request_id'] instanceof String)) {
-            throw new Error("Expected the field `request_id` to be a primitive type in the JSON string but got " + data['request_id']);
-        }
-        // ensure the json data is a string
-        if (data['kind'] && !(typeof data['kind'] === 'string' || data['kind'] instanceof String)) {
-            throw new Error("Expected the field `kind` to be a primitive type in the JSON string but got " + data['kind']);
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
         }
 
         return true;
@@ -84,27 +74,15 @@ class GenericError {
 
 
 /**
- * Request ID optionally generated from the service. It can be communicated to xayn to help debugging.
- * @member {String} request_id
+ * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
+ * @member {String} id
  */
-GenericError.prototype['request_id'] = undefined;
-
-/**
- * What kind of error this is.
- * @member {String} kind
- */
-GenericError.prototype['kind'] = undefined;
-
-/**
- * Additional error details. Might differ depending on debug options.
- * @member {Object} details
- */
-GenericError.prototype['details'] = undefined;
+InputUserById.prototype['id'] = undefined;
 
 
 
 
 
 
-export default GenericError;
+export default InputUserById;
 

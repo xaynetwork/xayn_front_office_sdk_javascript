@@ -17,7 +17,7 @@ import UserInteractionData from './UserInteractionData';
 /**
  * The UserInteractionRequest model module.
  * @module model/UserInteractionRequest
- * @version 1.0.24
+ * @version 1.0.25
  */
 class UserInteractionRequest {
     /**
@@ -76,7 +76,7 @@ class UserInteractionRequest {
             }
             // validate the optional field `documents` (array)
             for (const item of data['documents']) {
-                UserInteractionData.validateJsonObject(item);
+                UserInteractionData.validateJSON(item);
             };
         }
 

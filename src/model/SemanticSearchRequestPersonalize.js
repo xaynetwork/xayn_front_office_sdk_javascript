@@ -12,23 +12,23 @@
  */
 
 import ApiClient from '../ApiClient';
-import DocumentProperties from './DocumentProperties';
+import InputUser from './InputUser';
 
 /**
- * The PersonalizedDocumentData model module.
- * @module model/PersonalizedDocumentData
+ * The SemanticSearchRequestPersonalize model module.
+ * @module model/SemanticSearchRequestPersonalize
  * @version 1.0.25
  */
-class PersonalizedDocumentData {
+class SemanticSearchRequestPersonalize {
     /**
-     * Constructs a new <code>PersonalizedDocumentData</code>.
-     * @alias module:model/PersonalizedDocumentData
-     * @param id {String} An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
-     * @param score {Number} 
+     * Constructs a new <code>SemanticSearchRequestPersonalize</code>.
+     * Personalize the ranking of candidates based on a users preferences
+     * @alias module:model/SemanticSearchRequestPersonalize
+     * @param user {module:model/InputUser} 
      */
-    constructor(id, score) { 
+    constructor(user) { 
         
-        PersonalizedDocumentData.initialize(this, id, score);
+        SemanticSearchRequestPersonalize.initialize(this, user);
     }
 
     /**
@@ -36,50 +36,46 @@ class PersonalizedDocumentData {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, score) { 
-        obj['id'] = id;
-        obj['score'] = score;
+    static initialize(obj, user) { 
+        obj['user'] = user;
     }
 
     /**
-     * Constructs a <code>PersonalizedDocumentData</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>SemanticSearchRequestPersonalize</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/PersonalizedDocumentData} obj Optional instance to populate.
-     * @return {module:model/PersonalizedDocumentData} The populated <code>PersonalizedDocumentData</code> instance.
+     * @param {module:model/SemanticSearchRequestPersonalize} obj Optional instance to populate.
+     * @return {module:model/SemanticSearchRequestPersonalize} The populated <code>SemanticSearchRequestPersonalize</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new PersonalizedDocumentData();
+            obj = obj || new SemanticSearchRequestPersonalize();
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            if (data.hasOwnProperty('exclude_seen')) {
+                obj['exclude_seen'] = ApiClient.convertToType(data['exclude_seen'], 'Boolean');
             }
-            if (data.hasOwnProperty('score')) {
-                obj['score'] = ApiClient.convertToType(data['score'], 'Number');
-            }
-            if (data.hasOwnProperty('properties')) {
-                obj['properties'] = DocumentProperties.constructFromObject(data['properties']);
+            if (data.hasOwnProperty('user')) {
+                obj['user'] = InputUser.constructFromObject(data['user']);
             }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>PersonalizedDocumentData</code>.
+     * Validates the JSON data with respect to <code>SemanticSearchRequestPersonalize</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>PersonalizedDocumentData</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SemanticSearchRequestPersonalize</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of PersonalizedDocumentData.RequiredProperties) {
+        for (const property of SemanticSearchRequestPersonalize.RequiredProperties) {
             if (!data[property]) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // ensure the json data is a string
-        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
-            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        // validate the optional field `user`
+        if (data['user']) { // data not null
+          InputUser.validateJSON(data['user']);
         }
 
         return true;
@@ -88,28 +84,24 @@ class PersonalizedDocumentData {
 
 }
 
-PersonalizedDocumentData.RequiredProperties = ["id", "score"];
+SemanticSearchRequestPersonalize.RequiredProperties = ["user"];
 
 /**
- * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
- * @member {String} id
+ * If true do not include documents the user has already seen as search candidate.  A trimmed version of the users history might be used for this filter.  This option is incompatible with not specifying a user. 
+ * @member {Boolean} exclude_seen
+ * @default true
  */
-PersonalizedDocumentData.prototype['id'] = undefined;
+SemanticSearchRequestPersonalize.prototype['exclude_seen'] = true;
 
 /**
- * @member {Number} score
+ * @member {module:model/InputUser} user
  */
-PersonalizedDocumentData.prototype['score'] = undefined;
-
-/**
- * @member {module:model/DocumentProperties} properties
- */
-PersonalizedDocumentData.prototype['properties'] = undefined;
+SemanticSearchRequestPersonalize.prototype['user'] = undefined;
 
 
 
 
 
 
-export default PersonalizedDocumentData;
+export default SemanticSearchRequestPersonalize;
 

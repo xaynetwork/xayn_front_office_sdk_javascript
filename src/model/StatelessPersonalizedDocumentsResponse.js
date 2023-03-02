@@ -17,7 +17,7 @@ import PersonalizedDocumentData from './PersonalizedDocumentData';
 /**
  * The StatelessPersonalizedDocumentsResponse model module.
  * @module model/StatelessPersonalizedDocumentsResponse
- * @version 1.0.24
+ * @version 1.0.25
  */
 class StatelessPersonalizedDocumentsResponse {
     /**
@@ -83,7 +83,7 @@ class StatelessPersonalizedDocumentsResponse {
             }
             // validate the optional field `documents` (array)
             for (const item of data['documents']) {
-                PersonalizedDocumentData.validateJsonObject(item);
+                PersonalizedDocumentData.validateJSON(item);
             };
         }
 
