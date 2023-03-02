@@ -13,8 +13,6 @@ src/model/DocumentProperties.js
 src/model/GenericError.js
 src/model/HistoryEntry.js
 src/model/InputUser.js
-src/model/InputUserById.js
-src/model/InputUserWithHistory.js
 src/model/PersonalizedDocumentData.js
 src/model/PersonalizedDocumentsError.js
 src/model/PersonalizedDocumentsErrorAllOf.js
@@ -34,8 +32,6 @@ test/model/DocumentProperties.spec.js
 test/model/GenericError.spec.js
 test/model/HistoryEntry.spec.js
 test/model/InputUser.spec.js
-test/model/InputUserById.spec.js
-test/model/InputUserWithHistory.spec.js
 test/model/PersonalizedDocumentData.spec.js
 test/model/PersonalizedDocumentsError.spec.js
 test/model/PersonalizedDocumentsErrorAllOf.spec.js

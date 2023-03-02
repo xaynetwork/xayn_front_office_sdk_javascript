@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The HistoryEntry model module.
  * @module model/HistoryEntry
- * @version 1.0.25
+ * @version 1.0.26
  */
 class HistoryEntry {
     /**

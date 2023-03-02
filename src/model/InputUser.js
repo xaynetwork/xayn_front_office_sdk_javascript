@@ -13,69 +13,29 @@
 
 import ApiClient from '../ApiClient';
 import HistoryEntry from './HistoryEntry';
-import InputUserById from './InputUserById';
-import InputUserWithHistory from './InputUserWithHistory';
 
 /**
  * The InputUser model module.
  * @module model/InputUser
- * @version 1.0.25
+ * @version 1.0.26
  */
 class InputUser {
     /**
      * Constructs a new <code>InputUser</code>.
-     * Information about a user provided as input for an search  Currently this can either be the users &#x60;id&#x60; oder a users &#x60;history&#x60;. 
+     * Information about a user provided as input for an search  Currently this can _either_ be the user&#39;s &#x60;id&#x60; or a user&#39;s &#x60;history&#x60;. 
      * @alias module:model/InputUser
-     * @param {(module:model/InputUserById|module:model/InputUserWithHistory)} instance The actual instance to initialize InputUser.
      */
-    constructor(instance = null) {
-        if (instance === null) {
-            this.actualInstance = null;
-            return;
-        }
-        var match = 0;
-        var errorMessages = [];
-        try {
-            if (typeof instance === "InputUserById") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                InputUserById.validateJSON(instance); // throw an exception if no match
-                // create InputUserById from JS object
-                this.actualInstance = InputUserById.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into InputUserById
-            errorMessages.push("Failed to construct InputUserById: " + err)
-        }
+    constructor() { 
+        
+        InputUser.initialize(this);
+    }
 
-        try {
-            if (typeof instance === "InputUserWithHistory") {
-                this.actualInstance = instance;
-            } else {
-                // plain JS object
-                // validate the object
-                InputUserWithHistory.validateJSON(instance); // throw an exception if no match
-                // create InputUserWithHistory from JS object
-                this.actualInstance = InputUserWithHistory.constructFromObject(instance);
-            }
-            match++;
-        } catch(err) {
-            // json data failed to deserialize into InputUserWithHistory
-            errorMessages.push("Failed to construct InputUserWithHistory: " + err)
-        }
-
-        if (match > 1) {
-            throw new Error("Multiple matches found constructing `InputUser` with oneOf schemas InputUserById, InputUserWithHistory. Input: " + JSON.stringify(instance));
-        } else if (match === 0) {
-            this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `InputUser` with oneOf schemas InputUserById, InputUserWithHistory. Details: " +
-                            errorMessages.join(", "));
-        } else { // only 1 match
-            // the input is valid
-        }
+    /**
+     * Initializes the fields of this object.
+     * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
+     * Only for internal use.
+     */
+    static initialize(obj) { 
     }
 
     /**
@@ -86,42 +46,47 @@ class InputUser {
      * @return {module:model/InputUser} The populated <code>InputUser</code> instance.
      */
     static constructFromObject(data, obj) {
-        return new InputUser(data);
+        if (data) {
+            obj = obj || new InputUser();
+
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            }
+            if (data.hasOwnProperty('history')) {
+                obj['history'] = ApiClient.convertToType(data['history'], [HistoryEntry]);
+            }
+        }
+        return obj;
     }
 
     /**
-     * Gets the actual instance, which can be <code>InputUserById</code>, <code>InputUserWithHistory</code>.
-     * @return {(module:model/InputUserById|module:model/InputUserWithHistory)} The actual instance.
+     * Validates the JSON data with respect to <code>InputUser</code>.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>InputUser</code>.
      */
-    getActualInstance() {
-        return this.actualInstance;
+    static validateJSON(data) {
+        // ensure the json data is a string
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        }
+        if (data['history']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['history'])) {
+                throw new Error("Expected the field `history` to be an array in the JSON data but got " + data['history']);
+            }
+            // validate the optional field `history` (array)
+            for (const item of data['history']) {
+                HistoryEntry.validateJSON(item);
+            };
+        }
+
+        return true;
     }
 
-    /**
-     * Sets the actual instance, which can be <code>InputUserById</code>, <code>InputUserWithHistory</code>.
-     * @param {(module:model/InputUserById|module:model/InputUserWithHistory)} obj The actual instance.
-     */
-    setActualInstance(obj) {
-       this.actualInstance = InputUser.constructFromObject(obj).getActualInstance();
-    }
 
-    /**
-     * Returns the JSON representation of the actual instance.
-     * @return {string}
-     */
-    toJSON = function(){
-        return this.getActualInstance();
-    }
-
-    /**
-     * Create an instance of InputUser from a JSON string.
-     * @param {string} json_string JSON string.
-     * @return {module:model/InputUser} An instance of InputUser.
-     */
-    static fromJSON = function(json_string){
-        return InputUser.constructFromObject(JSON.parse(json_string));
-    }
 }
+
+
 
 /**
  * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
@@ -136,7 +101,9 @@ InputUser.prototype['id'] = undefined;
 InputUser.prototype['history'] = undefined;
 
 
-InputUser.OneOf = ["InputUserById", "InputUserWithHistory"];
+
+
+
 
 export default InputUser;
 

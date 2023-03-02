@@ -17,7 +17,7 @@ import SemanticSearchRequestPersonalize from './SemanticSearchRequestPersonalize
 /**
  * The SemanticSearchRequest model module.
  * @module model/SemanticSearchRequest
- * @version 1.0.25
+ * @version 1.0.26
  */
 class SemanticSearchRequest {
     /**

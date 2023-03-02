@@ -17,8 +17,6 @@ import DocumentProperties from './model/DocumentProperties';
 import GenericError from './model/GenericError';
 import HistoryEntry from './model/HistoryEntry';
 import InputUser from './model/InputUser';
-import InputUserById from './model/InputUserById';
-import InputUserWithHistory from './model/InputUserWithHistory';
 import PersonalizedDocumentData from './model/PersonalizedDocumentData';
 import PersonalizedDocumentsError from './model/PersonalizedDocumentsError';
 import PersonalizedDocumentsErrorAllOf from './model/PersonalizedDocumentsErrorAllOf';
@@ -65,7 +63,7 @@ import FrontOfficeApi from './com.xayn.frontoffice/FrontOfficeApi';
 * </pre>
 * </p>
 * @module index
-* @version 1.0.25
+* @version 1.0.26
 */
 export {
     /**
@@ -97,18 +95,6 @@ export {
      * @property {module:model/InputUser}
      */
     InputUser,
-
-    /**
-     * The InputUserById model constructor.
-     * @property {module:model/InputUserById}
-     */
-    InputUserById,
-
-    /**
-     * The InputUserWithHistory model constructor.
-     * @property {module:model/InputUserWithHistory}
-     */
-    InputUserWithHistory,
 
     /**
      * The PersonalizedDocumentData model constructor.
