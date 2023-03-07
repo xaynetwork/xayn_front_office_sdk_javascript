@@ -17,7 +17,7 @@ import HistoryEntry from './HistoryEntry';
 /**
  * The InputUser model module.
  * @module model/InputUser
- * @version 1.0.26
+ * @version 1.0.27
  */
 class InputUser {
     /**

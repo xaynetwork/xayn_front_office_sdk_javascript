@@ -26,7 +26,7 @@ import UserInteractionRequest from '../model/UserInteractionRequest';
 /**
 * FrontOffice service.
 * @module com.xayn.frontoffice/FrontOfficeApi
-* @version 1.0.26
+* @version 1.0.27
 */
 export default class FrontOfficeApi {
 

@@ -17,7 +17,7 @@ import HistoryEntry from './HistoryEntry';
 /**
  * The StatelessPersonalizedDocumentsRequest model module.
  * @module model/StatelessPersonalizedDocumentsRequest
- * @version 1.0.26
+ * @version 1.0.27
  */
 class StatelessPersonalizedDocumentsRequest {
     /**

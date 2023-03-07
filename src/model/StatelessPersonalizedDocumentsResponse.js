@@ -17,7 +17,7 @@ import PersonalizedDocumentData from './PersonalizedDocumentData';
 /**
  * The StatelessPersonalizedDocumentsResponse model module.
  * @module model/StatelessPersonalizedDocumentsResponse
- * @version 1.0.26
+ * @version 1.0.27
  */
 class StatelessPersonalizedDocumentsResponse {
     /**

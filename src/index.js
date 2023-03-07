@@ -16,6 +16,7 @@ import ApiClient from './ApiClient';
 import DocumentProperties from './model/DocumentProperties';
 import GenericError from './model/GenericError';
 import HistoryEntry from './model/HistoryEntry';
+import InputDocument from './model/InputDocument';
 import InputUser from './model/InputUser';
 import PersonalizedDocumentData from './model/PersonalizedDocumentData';
 import PersonalizedDocumentsError from './model/PersonalizedDocumentsError';
@@ -63,7 +64,7 @@ import FrontOfficeApi from './com.xayn.frontoffice/FrontOfficeApi';
 * </pre>
 * </p>
 * @module index
-* @version 1.0.26
+* @version 1.0.27
 */
 export {
     /**
@@ -89,6 +90,12 @@ export {
      * @property {module:model/HistoryEntry}
      */
     HistoryEntry,
+
+    /**
+     * The InputDocument model constructor.
+     * @property {module:model/InputDocument}
+     */
+    InputDocument,
 
     /**
      * The InputUser model constructor.

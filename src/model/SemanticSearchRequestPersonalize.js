@@ -17,7 +17,7 @@ import InputUser from './InputUser';
 /**
  * The SemanticSearchRequestPersonalize model module.
  * @module model/SemanticSearchRequestPersonalize
- * @version 1.0.26
+ * @version 1.0.27
  */
 class SemanticSearchRequestPersonalize {
     /**

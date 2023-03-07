@@ -12,23 +12,21 @@
  */
 
 import ApiClient from '../ApiClient';
-import DocumentProperties from './DocumentProperties';
 
 /**
- * The PersonalizedDocumentData model module.
- * @module model/PersonalizedDocumentData
+ * The InputDocument model module.
+ * @module model/InputDocument
  * @version 1.0.27
  */
-class PersonalizedDocumentData {
+class InputDocument {
     /**
-     * Constructs a new <code>PersonalizedDocumentData</code>.
-     * @alias module:model/PersonalizedDocumentData
-     * @param id {String} An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
-     * @param score {Number} 
+     * Constructs a new <code>InputDocument</code>.
+     * Information about a document provided as input for an search.  Currently this can _only_ be the user&#39;s &#x60;id&#x60;, more options will be added in the future. 
+     * @alias module:model/InputDocument
      */
-    constructor(id, score) { 
+    constructor() { 
         
-        PersonalizedDocumentData.initialize(this, id, score);
+        InputDocument.initialize(this);
     }
 
     /**
@@ -36,47 +34,33 @@ class PersonalizedDocumentData {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, score) { 
-        obj['id'] = id;
-        obj['score'] = score;
+    static initialize(obj) { 
     }
 
     /**
-     * Constructs a <code>PersonalizedDocumentData</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>InputDocument</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/PersonalizedDocumentData} obj Optional instance to populate.
-     * @return {module:model/PersonalizedDocumentData} The populated <code>PersonalizedDocumentData</code> instance.
+     * @param {module:model/InputDocument} obj Optional instance to populate.
+     * @return {module:model/InputDocument} The populated <code>InputDocument</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new PersonalizedDocumentData();
+            obj = obj || new InputDocument();
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
-            if (data.hasOwnProperty('score')) {
-                obj['score'] = ApiClient.convertToType(data['score'], 'Number');
-            }
-            if (data.hasOwnProperty('properties')) {
-                obj['properties'] = DocumentProperties.constructFromObject(data['properties']);
             }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>PersonalizedDocumentData</code>.
+     * Validates the JSON data with respect to <code>InputDocument</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>PersonalizedDocumentData</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>InputDocument</code>.
      */
     static validateJSON(data) {
-        // check to make sure all required properties are present in the JSON string
-        for (const property of PersonalizedDocumentData.RequiredProperties) {
-            if (!data[property]) {
-                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
-            }
-        }
         // ensure the json data is a string
         if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
             throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
@@ -88,28 +72,18 @@ class PersonalizedDocumentData {
 
 }
 
-PersonalizedDocumentData.RequiredProperties = ["id", "score"];
+
 
 /**
  * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
  * @member {String} id
  */
-PersonalizedDocumentData.prototype['id'] = undefined;
-
-/**
- * @member {Number} score
- */
-PersonalizedDocumentData.prototype['score'] = undefined;
-
-/**
- * @member {module:model/DocumentProperties} properties
- */
-PersonalizedDocumentData.prototype['properties'] = undefined;
+InputDocument.prototype['id'] = undefined;
 
 
 
 
 
 
-export default PersonalizedDocumentData;
+export default InputDocument;
 

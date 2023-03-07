@@ -12,6 +12,7 @@ src/index.js
 src/model/DocumentProperties.js
 src/model/GenericError.js
 src/model/HistoryEntry.js
+src/model/InputDocument.js
 src/model/InputUser.js
 src/model/PersonalizedDocumentData.js
 src/model/PersonalizedDocumentsError.js
@@ -31,6 +32,7 @@ test/api/FrontOfficeApi.spec.js
 test/model/DocumentProperties.spec.js
 test/model/GenericError.spec.js
 test/model/HistoryEntry.spec.js
+test/model/InputDocument.spec.js
 test/model/InputUser.spec.js
 test/model/PersonalizedDocumentData.spec.js
 test/model/PersonalizedDocumentsError.spec.js

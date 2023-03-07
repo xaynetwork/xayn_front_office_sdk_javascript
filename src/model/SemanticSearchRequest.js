@@ -12,22 +12,23 @@
  */
 
 import ApiClient from '../ApiClient';
+import InputDocument from './InputDocument';
 import SemanticSearchRequestPersonalize from './SemanticSearchRequestPersonalize';
 
 /**
  * The SemanticSearchRequest model module.
  * @module model/SemanticSearchRequest
- * @version 1.0.26
+ * @version 1.0.27
  */
 class SemanticSearchRequest {
     /**
      * Constructs a new <code>SemanticSearchRequest</code>.
      * @alias module:model/SemanticSearchRequest
-     * @param documentId {String} An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
+     * @param document {module:model/InputDocument} 
      */
-    constructor(documentId) { 
+    constructor(document) { 
         
-        SemanticSearchRequest.initialize(this, documentId);
+        SemanticSearchRequest.initialize(this, document);
     }
 
     /**
@@ -35,8 +36,8 @@ class SemanticSearchRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, documentId) { 
-        obj['document_id'] = documentId;
+    static initialize(obj, document) { 
+        obj['document'] = document;
     }
 
     /**
@@ -50,8 +51,8 @@ class SemanticSearchRequest {
         if (data) {
             obj = obj || new SemanticSearchRequest();
 
-            if (data.hasOwnProperty('document_id')) {
-                obj['document_id'] = ApiClient.convertToType(data['document_id'], 'String');
+            if (data.hasOwnProperty('document')) {
+                obj['document'] = InputDocument.constructFromObject(data['document']);
             }
             if (data.hasOwnProperty('count')) {
                 obj['count'] = ApiClient.convertToType(data['count'], 'Number');
@@ -81,9 +82,9 @@ class SemanticSearchRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // ensure the json data is a string
-        if (data['document_id'] && !(typeof data['document_id'] === 'string' || data['document_id'] instanceof String)) {
-            throw new Error("Expected the field `document_id` to be a primitive type in the JSON string but got " + data['document_id']);
+        // validate the optional field `document`
+        if (data['document']) { // data not null
+          InputDocument.validateJSON(data['document']);
         }
         // validate the optional field `personalize`
         if (data['personalize']) { // data not null
@@ -96,13 +97,12 @@ class SemanticSearchRequest {
 
 }
 
-SemanticSearchRequest.RequiredProperties = ["document_id"];
+SemanticSearchRequest.RequiredProperties = ["document"];
 
 /**
- * An id can be any non-empty string that consist of digits, latin letters, underscores, colons, minus signs, at signs, and dots.
- * @member {String} document_id
+ * @member {module:model/InputDocument} document
  */
-SemanticSearchRequest.prototype['document_id'] = undefined;
+SemanticSearchRequest.prototype['document'] = undefined;
 
 /**
  * @member {Number} count
